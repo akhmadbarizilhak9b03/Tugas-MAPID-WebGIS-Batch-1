@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warm Up</title>
+
+    <!-- cdn mapilibre gl js -->
+    <script src="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- cdn tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <div id="map" class="w-full h-screen"></div>
+
+    <script>
+        const MAP_SERVICE_KEY = "68da7e8106823ed3f510cc4a";
+        const DEFAULT_THEME = "street-new-generation";
+        const map = new maplibregl.Map({
+            style: `https://basemap.mapid.io/styles/${DEFAULT_THEME}/style.json?key=${MAP_SERVICE_KEY}`,
+            center: [113.482662646211, -7.160562247162545],
+            zoom: 12, //0 - 22
+            pitch: 0,
+            bearing: 0,
+            container: "map",
+            canvasContextAttributes: { antialias: true },
+            attributionControl: true
+        });
+
+        map.on("load", function () {
+            map.addSource("data-kota", {
+                type: "geojson",
+                data: "https://geoserver.mapid.io/layers_new/get_layer?api_key=10b2e2781d0d48629e03d6b6d4eff098&layer_id=68e66eaaf417a096a17124a9&project_id=68da84e22cfbb14589085384"
+            });
+
+
+            map.addLayer({
+                id: "layer-data-kota",
+                type: "circle",
+                source: "data-kota",
+                paint: {
+                    "circle-radius": 10,
+                    "circle-color": [
+                        "case",
+                        //cek jika nilai Warna kosong dan memberikan warna rgba(255, 215, 0, 1)
+                        ["==", ["get", "Warna"], ""], "rgba(255, 215, 0, 1)",
+                        //cek jika nilai bukan null
+                        ["!=", null, ["get", "Warna"]],
+                        //gunakan nilai Warna
+                        ["get", "Warna"],
+                        //warna default jika tidak ada maka memberikan warna rgba(255, 215, 0, 1)
+                        "rgba(255, 215, 0, 1)"
+                    ]
+                },
+            }, "place_other"
+            );
+        });
+
+    </script>
+</body>
+
+</html>
