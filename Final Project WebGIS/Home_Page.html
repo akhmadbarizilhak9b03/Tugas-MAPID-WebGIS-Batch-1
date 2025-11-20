@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <script src="script_modal1.js" defer></script>
+
+    <!-- membuat font deault untuk web -->
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'TASA Explorer', sans-serif; background-color: white;
+            /* border: 3px solid black; */
+        }
+         @theme {--font-tasa: 'TASA Explorer', sans-serif;
+        }
+        
+    </style>
+
+    <!-- cdn mapilibre gl js -->
+    <script src="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- cdn tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- cdn feather -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+
+
+</head>
+
+<body class="min-h-screen flex flex-col static">
+
+    <header
+        class="flex lg:flex-row flex-col bg-[#1b3c53] shadow-md p-15 sm:p-18 md:p-15 sticky top-0 z-50 items-center justify-between content-center">
+        <div class="flex w-1/5 lg:ml-15 text-center justify-center">
+            <p id="judulweb" class="text-white z-20 font-bold text-4xl md:text-5xl lg:text-6xl">
+                <span>👋</span><span>Gh&acirc;pan&eacute;ka</span> <span>Madhur&acirc;</span>
+            </p>
+        </div>
+
+        <nav class="soto justify-center items-center content-center">
+            <ul class="soto1 flex flex-row mt-10 xs:mt-15 lg:mt-0 gap-7">
+                <li class="text-center mt-3"><a href="#"
+                        class="rounded-2xl text-white
+                    border-b-4 border-yellow-500 font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring hover:border-b-0
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Beranda</a>
+                </li>
+                <li class="text-center mt-3"><a href="Map_Page.html"
+                        class="rounded-2xl text-white
+                    font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Peta</a></li>
+                <li class="text-center mt-3"><a href="Portofolio_Page.html"
+                        class="rounded-2xl text-white
+                    font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Portofolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main
+        class="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] xl:h-[80vh] overflow-hidden shadow-xl border-b-4 border-stone-400">
+
+        <div class="absolute inset-0 scale-down-center-normal">
+            <img src="https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Gambar.png"
+                alt="gambar" class="w-full h-full object-cover">
+        </div>
+
+
+        <div class="absolute inset-0 bg-black/40"></div>
+
+
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent backdrop-blur-[1px] slide-top-normal">
+        </div>
+
+
+        <div class="absolute inset-0 flex flex-col justify-center items-center px-4 scale-up-center-normal">
+
+            <h1 class="text-center max-w-3xl leading-tight text-3xl md:text-5xl lg:text-6xl 
+            font-extrabold text-white drop-shadow-xl">
+                Assalamu'alaikum semua<br>
+                Selamat Datang di WebGIS Wisata & Budaya Madura
+            </h1>
+
+            <p class="mt-4 text-center text-white/80 text-sm md:text-lg drop-shadow">
+                Eksplorasi peta interaktif, objek wisata, budaya, dan tradisi ikonik Madura.
+            </p>
+
+
+        </div>
+
+    </main>
+
+
+    <section class="flex lg:flex-row flex-col m-10 lg:m-15 md:m-20">
+        <div class="flex lg:basis-1/3 content-center justify-center items-center lg:mr-10">
+            <p class="sm:text-base md:text-lg lg:text-2xl xl:text-3xl lg:text-left
+            scale-down-center-normal text-center">"Selamat datang di WebGIS interaktif
+                yang menjadi
+                panduan utama
+                Anda untuk menjelajahi kekayaan wisata dan budaya di Kabupaten Pamekasan. Temukan berbagai destinasi
+                menarik, situs bersejarah, serta rekomendasi acara atau festival lokal yang akan memperkaya pengalaman
+                perjalanan Anda."</p>
+        </div>
+
+        <div class="mt-5 flex sm:flex-wrap-reverse border-4 border-stone-400
+            scale-up-center-normal lg:basis-2/3 md:min-h-fit overflow-hidden rounded-3xl shadow-lg">
+            <img src="https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Gambar.png"
+                class="object-cover">
+        </div>
+
+
+    </section>
+
+
+    <section class="flex w-[95%] md:w-[90%] p-0 overflow-hidden sm:text-base md:text-xl scale-down-center-normal mx-auto
+            rounded-3xl border-5 border-yellow-500">
+        <!-- Background layer -->
+        <div
+            class="bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Screenshot%202025-10-27%20131811.png')] bg-cover bg-center z-0">
+        </div>
+
+        <!-- Content layer -->
+        <div class="relative flex flex-row w-full z-10 mx-auto items-center content-center justify-center">
+            <div class="text-center p-5">
+                <h1 class="text-xl sm:text-3xl font-extrabold">Kenali 4 Kabupaten <br> di Pulau Madura</h1>
+            </div>
+
+        </div>
+    </section>
+
+
+    <aside class="flex flex-col lg:flex-row items-center lg:items-stretch gap-5 max-w-[90%] md:w-[90%] mt-10 mx-auto">
+        <!-- CARD 1 -->
+        <!-- <div class="hover:cursor-pointer relative group flex-grow transition-all w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-400 hover:sm:w-full rounded-xl overflow-hidden"> -->
+        <div
+            class="hover:cursor-pointer relative group flex-grow transition-transform w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-300 rounded-xl overflow-hidden hover:scale-[1.03]">
+
+            <img class="h-full w-full object-cover object-center"
+                src="https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Bangkalan.png"
+                alt="image">
+            <div
+                class="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 text-white bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <button data-modal-target="#modal-bangkalan">
+                    <p
+                        class="text-2xl sm:text-3xl pb-2 font-bold text-left hover:underline-offset-5 hover:underline hover:cursor-pointer">
+                        Kabupaten Bangkalan</p>
+                </button>
+                <p class="text-base sm:text-md">Terletak paling barat dan menjadi pintu masuk utama via Jembatan
+                    Suramadu.
+                </p>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <!-- <div class="hover:cursor-pointer relative group flex-grow transition-all w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-400 hover:sm:w-full rounded-xl overflow-hidden"> -->
+        <div
+            class="hover:cursor-pointer relative group flex-grow transition-transform w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-300 rounded-xl overflow-hidden hover:scale-[1.03]">
+
+            <img class="h-full w-full object-cover object-center"
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGMhFIzKtT8g5WEOQ_-NsHxqHNc3PFHYY8UWF9_rVV1d4U7Bj_ky8ODzk1nxKMRAi2EXXPr4mIG3MjKR5BCbyDNq4KSSpGfHM3q4tH-UD8P7qd9MWMOBmzAnkls2D4pL5H-XRvkF0lHjX2fZoqo6kcNAnfzYHgoLeKla_EQI3aPiy5-waq2Q6lSpjJ/s1280/alun%20alun%20terbesar%20di%20kabupaten%20sampang.jpg"
+                alt="image">
+            <div
+                class="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 text-white bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <button data-modal-target="#modal-sampang">
+                    <p
+                        class="text-2xl sm:text-3xl pb-2 font-bold text-left hover:underline-offset-5 hover:underline hover:cursor-pointer">
+                        Kabupaten Sampang</p>
+                </button>
+                <p class="text-base sm:text-md">Nama Sampang juga erat dengan tokoh Trunojoyo, pejuang Madura yang
+                    bersejarah.
+                </p>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <!-- <div class="hover:cursor-pointer relative group flex-grow transition-all w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-400 hover:sm:w-full rounded-xl overflow-hidden"> -->
+        <div
+            class="hover:cursor-pointer relative group flex-grow transition-transform w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-300 rounded-xl overflow-hidden hover:scale-[1.03]">
+
+            <img class="h-full w-full object-cover object-center"
+                src="https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/20250407_081658.jpg"
+                alt="image">
+            <div
+                class="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 text-white bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <button data-modal-target="#modal-pamekasan">
+                    <p
+                        class="text-2xl sm:text-3xl pb-2 font-bold text-left hover:underline-offset-5 hover:underline hover:cursor-pointer">
+                        Kabupaten Pamekasan</p>
+                </button>
+                <p class="text-base sm:text-md">Dikenal sebagai pusat pendidikan Islam dan pesantren besar.</p>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <!-- <div class="hover:cursor-pointer relative group flex-grow transition-all w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-400 hover:sm:w-full rounded-xl overflow-hidden"> -->
+        <div
+            class="hover:cursor-pointer relative group flex-grow transition-transform w-full sm:w-[500px] h-[300px] sm:h-[400px] duration-300 rounded-xl overflow-hidden hover:scale-[1.03]">
+
+            <img class="h-full w-full object-cover object-center"
+                src="https://www.oyorooms.com/travel-guide/id/wp-content/uploads/sites/6/2022/12/Surga-Tersembunyi-Madura-7-Wisata-Sumenep-Terbaik.jpg"
+                alt="image">
+            <div
+                class="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 text-white bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <button data-modal-target="#modal-sumenep">
+                    <p
+                        class="text-2xl sm:text-3xl pb-2 font-bold text-left hover:underline-offset-5 hover:underline hover:cursor-pointer">
+                        Kabupaten Sumenep</p>
+                </button>
+                <p class="text-base sm:text-md">Dikenal sebagai pusat kerajaan Madura masa lalu, dengan peninggalan
+                    Keraton Sumenep dan Masjid Agung yang megah.
+                </p>
+            </div>
+        </div>
+
+
+    </aside>
+
+
+
+    <section id="modal-bangkalan"
+        class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[70%] md:w-[60%] h-[50%] md:h-[60%] overflow-hidden">
+
+        <!-- LAYER BACKGROUND DENGAN MASK -->
+        <div class="absolute inset-0 
+        bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Bangkalan.png')]
+        bg-cover bg-center
+        [mask-image:linear-gradient(to_top,transparent_40%,black_90%)]
+        lg:[mask-image:linear-gradient(to_left,transparent_40%,black_80%)]
+        [mask-size:100%_100%] [mask-repeat:no-repeat]">
+        </div>
+
+        <!-- LAYER PUTIH DENGAN MASK -->
+        <!-- <div class="absolute inset-0 
+        bg-white
+        [mask-image:linear-gradient(to_bottom,transparent_0%,black_50%)]
+        lg:[mask-image:linear-gradient(to_right,transparent_0%,black_50%)]
+        [mask-size:100%_100%] [mask-repeat:no-repeat]">
+        </div> -->
+
+        <!-- TOMBOL CLOSE (POJOK KANAN ATAS) -->
+        <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+            <button data-close-button
+                class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+        </div>
+
+        <!-- ISI KONTEN -->
+        <div class="absolute z-10 text-center w-full px-8 lg:px-3 bottom-10
+        md:bottom-10 lg:bottom-auto lg:top-1/2 lg:right-1 lg:-translate-y-1/2 lg:w-[40%] lg:text-left
+        transition-all duration-700 ease-in-out">
+
+            <h2 class="text-3xl font-bold text-black mb-4 transition-all duration-700 ease-in-out">Bangkalan</h2>
+            <div class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh]
+            overflow-x-hidden js-autohide-scroll overflow-y-auto">
+                <div class="p-4">
+                    <span>
+                        🏝️ Fakta Geografis & Umum
+                    </span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Gerbang Pulau Madura</strong> — Bangkalan adalah pintu masuk utama ke Pulau Madura
+                            melalui Jembatan
+                            Suramadu, jembatan terpanjang di Indonesia (5.438 meter).
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Dekat Surabaya</strong> — Dari pusat Bangkalan ke Surabaya hanya sekitar 30–40 menit
+                            lewat jembatan,
+                            menjadikannya daerah dengan potensi ekonomi tinggi.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Topografi Beragam</strong> — Meski dikenal tandus, Bangkalan punya perbukitan
+                            kapur, pesisir, hingga kawasan hijau di bagian utaranya.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Wilayah Luas</strong> — Mencakup 1.260 km² dengan 18 kecamatan dan lebih dari
+                            270 desa.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🕌 Fakta Budaya & Sejarah</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kerajaan Bangkalan</strong> — Dahulu merupakan kerajaan Islam di bawah
+                            Kesultanan Madura Barat, dipimpin oleh raja-rajanya yang bergelar Pangeran Cakraningrat.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Makam Aermata Ibu (Makam Ratu Ibu)</strong> — Salah satu situs bersejarah
+                            penting dan destinasi wisata religi populer.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Tradisi Karapan Sapi</strong> — Salah satu ikon budaya Madura yang sering
+                            diadakan di Bangkalan, bahkan menjadi ajang tingkat nasional.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Tanean Lanjhang</strong> — Sistem permukiman khas Madura, di mana beberapa rumah
+                            dalam satu keluarga besar disusun sejajar dalam satu pekarangan memanjang.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Bahasa Madura Khas Bangkalan</strong> — Logatnya dikenal halus dibanding daerah
+                            Madura lainnya, mirip bahasa Madura Pesisiran.
+                        </li>
+                    </ol>
+                    <br>
+                    <span>🌅 Fakta Wisata & Alam</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Bukit Jaddih</strong> — Bukit kapur putih yang kini jadi destinasi wisata
+                            ikonik, lengkap dengan kolam alami berwarna biru toska.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Puncak Geger</strong> — Tempat favorit melihat panorama laut dan perbukitan,
+                            sekaligus area cagar budaya dan habitat lutung.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Siring Kemuning</strong> — Dikenal karena pasirnya yang lembut dan
+                            sunset-nya yang indah.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Mercusuar Sembilangan</strong> — Dibangun oleh Belanda pada tahun 1882, masih
+                            berfungsi sampai sekarang dan jadi spot foto favorit.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kawasan Eduwisata Caddas Labeng</strong> — Gua alami di perbukitan kapur dengan
+                            formasi batu unik.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🍲 Fakta Kuliner</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Bebek Sinjay</strong> — Asalnya dari Bangkalan, kini jadi ikon kuliner Madura
+                            yang mendunia.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Topa' Ladeh & Nasi Serpang</strong> — Hidangan tradisional khas Bangkalan dengan
+                            cita rasa kuat dan gurih.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Petis Madura & Sate Madura</strong> — Dua kuliner legendaris yang banyak
+                            dipercaya berasal dan berkembang dari Bangkalan.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">💡 Fakta Lain yang Menarik</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kota Santri & Ulama</strong> — Banyak pondok pesantren besar berdiri di
+                            Bangkalan, seperti Pondok Pesantren Syaichona Cholil, tempat lahirnya banyak ulama besar
+                            Indonesia.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pusat Gerakan Keagamaan & Politik Madura</strong> — Tokoh-tokoh besar seperti
+                            KH. Cholil Bangkalan sangat berpengaruh dalam penyebaran Islam dan berdirinya Nahdlatul
+                            Ulama.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Identitas Madura yang Kuat</strong> — Masyarakat Bangkalan terkenal dengan
+                            prinsip “abhental omba’, apajung tak bisa” (beralas ombak, beratap langit) yang
+                            melambangkan keberanian dan kemandirian orang Madura.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="modal-sampang"
+        class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[70%] md:w-[60%] h-[50%] md:h-[60%] overflow-hidden">
+
+        <!-- LAYER BACKGROUND DENGAN MASK -->
+        <div class="absolute inset-0 
+        bg-[url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGMhFIzKtT8g5WEOQ_-NsHxqHNc3PFHYY8UWF9_rVV1d4U7Bj_ky8ODzk1nxKMRAi2EXXPr4mIG3MjKR5BCbyDNq4KSSpGfHM3q4tH-UD8P7qd9MWMOBmzAnkls2D4pL5H-XRvkF0lHjX2fZoqo6kcNAnfzYHgoLeKla_EQI3aPiy5-waq2Q6lSpjJ/s1280/alun%20alun%20terbesar%20di%20kabupaten%20sampang.jpg')]
+        bg-cover bg-center
+        [mask-image:linear-gradient(to_top,transparent_40%,black_90%)]
+        lg:[mask-image:linear-gradient(to_left,transparent_40%,black_80%)]
+        [mask-size:100%_100%] [mask-repeat:no-repeat]">
+        </div>
+
+        <!-- LAYER PUTIH DENGAN MASK -->
+        <!-- <div class="absolute inset-0 
+        bg-white
+        [mask-image:linear-gradient(to_bottom,transparent_0%,black_50%)]
+        lg:[mask-image:linear-gradient(to_right,transparent_0%,black_50%)]
+        [mask-size:100%_100%] [mask-repeat:no-repeat]">
+        </div> -->
+
+        <!-- TOMBOL CLOSE (POJOK KANAN ATAS) -->
+        <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+            <button data-close-button
+                class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+        </div>
+
+        <!-- ISI KONTEN -->
+        <div class="absolute z-10 text-center w-full px-8 lg:px-3 bottom-10
+        md:bottom-10 lg:bottom-auto lg:top-1/2 lg:right-1 lg:-translate-y-1/2 lg:w-[40%] lg:text-left
+        transition-all duration-700 ease-in-out">
+
+            <h2 class="text-3xl font-bold text-black mb-4 transition-all duration-700 ease-in-out">Sampang</h2>
+            <div class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh]
+            overflow-x-hidden js-autohide-scroll overflow-y-auto">
+                <div class="p-4">
+                    <span>
+                        🗺️ Fakta Geografis & Umum
+                    </span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Letak Strategis di Tengah Pulau Madura</strong> — Kabupaten Sampang berada di posisi
+                            tengah Pulau Madura, diapit oleh Kabupaten Bangkalan di barat dan Pamekasan di timur.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Luas Wilayah</strong> — Mencakup sekitar 1.233 km² dengan 14 kecamatan dan lebih
+                            dari 180 desa/kelurahan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kombinasi Alam Laut dan Pegunungan</strong> — Sampang memiliki dataran rendah
+                            pesisir, perbukitan kapur, dan pantai-pantai indah khas Madura.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Sumber Air Bawah Tanah</strong> — Meski dikenal kering, beberapa wilayah Sampang
+                            memiliki sumber air alami yang jernih dan sejuk.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🕌 Fakta Budaya & Sejarah</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kerajaan Sampang (Keraton Sampang)</strong> — Dahulu merupakan kerajaan Islam di
+                            bawah Kesultanan Madura Timur, yang memiliki hubungan erat dengan Kerajaan Bangkalan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Makam Ratu Ebu dan Pangeran Trunojoyo</strong> — Tokoh legendaris Madura yang
+                            dikenal memimpin perlawanan terhadap VOC Belanda pada abad ke-17.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Tradisi Rokat Tase’</strong> — Upacara adat turun-temurun masyarakat pesisir Sampang
+                            untuk mensyukuri hasil laut dan memohon keselamatan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Tanean Lanjheng</strong> — Sistem permukiman khas Madura yang masih lestari di
+                            Sampang, mencerminkan nilai kekeluargaan yang kuat.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Dialek Madura Sampang</strong> — Logatnya berada di antara dialek Bangkalan yang
+                            halus dan Pamekasan yang tegas, menjadikannya unik di telinga.
+                        </li>
+                    </ol>
+                    <br>
+                    <span>🌊 Fakta Alam & Wisata</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Lon Malang</strong> — Pantai berpasir putih dengan ombak tenang, cocok untuk
+                            wisata keluarga dan rekreasi lokal.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Nepa & Hutan Kera Nepa</strong> — Dikenal dengan hutan alami berisi kera
+                            jinak dan pemandangan laut yang eksotis.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Air Terjun Toroan</strong> — Air terjun unik yang langsung bermuara ke laut,
+                            satu-satunya di Madura dan sangat fotogenik.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Camplong</strong> — Pantai paling populer di Sampang dengan fasilitas wisata,
+                            penginapan, dan kuliner laut segar.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Bukit Masegit</strong> — Tempat dengan panorama menakjubkan dari ketinggian,
+                            sekaligus menjadi lokasi spiritual bagi warga sekitar.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🍲 Fakta Kuliner</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kaldu Kokot</strong> — Hidangan legendaris khas Sampang berbahan kikil dan tulang
+                            sumsum sapi, disajikan dengan lontong.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Nasi Kobel & Lorjuk</strong> — Menu khas pesisir Sampang dengan cita rasa gurih
+                            pedas yang disukai banyak wisatawan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Sate Lalat</strong> — Sate berukuran kecil khas Sampang, disebut “lalat” karena
+                            potongan dagingnya mungil, bukan karena bahannya.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Petis Lorjuk & Ikan Asin Camplong</strong> — Produk olahan laut unggulan yang
+                            menjadi oleh-oleh favorit dari Sampang.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">💫 Fakta Sosial & Modern</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kota Religius & Tradisional</strong> — Banyak pesantren besar berdiri di Sampang,
+                            seperti Pondok Pesantren At-Taroqqi dan Darul Ulum, yang berperan penting dalam pendidikan
+                            Islam di Madura.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pusat Kerajinan Anyaman & Batik Madura</strong> — Desa-desa di Sampang masih aktif
+                            membuat anyaman pandan dan batik berwarna mencolok khas Madura.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Simbol Keuletan Orang Madura</strong> — Warga Sampang dikenal gigih, pekerja keras,
+                            dan menjunjung tinggi harga diri, sesuai pepatah: “Molo’ bisa, epon tak apolah” (jika bisa
+                            dilakukan sendiri, tak akan minta bantuan).
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="modal-pamekasan"
+        class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[70%] md:w-[60%] h-[50%] md:h-[60%] overflow-hidden">
+
+        <!-- LAYER BACKGROUND DENGAN MASK -->
+        <div class="absolute inset-0 
+        bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/20250407_081658.jpg')]
+        bg-cover bg-center
+        [mask-image:linear-gradient(to_top,transparent_40%,black_90%)]
+        lg:[mask-image:linear-gradient(to_left,transparent_40%,black_80%)]
+        [mask-size:100%_100%] [mask-repeat:no-repeat]">
+        </div>
+
+        <!-- TOMBOL CLOSE (POJOK KANAN ATAS) -->
+        <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+            <button data-close-button
+                class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+        </div>
+
+        <!-- ISI KONTEN -->
+        <div class="absolute z-10 text-center w-full px-8 lg:px-3 bottom-10
+        md:bottom-10 lg:bottom-auto lg:top-1/2 lg:right-1 lg:-translate-y-1/2 lg:w-[40%] lg:text-left
+        transition-all duration-700 ease-in-out">
+
+            <h2 class="text-3xl font-bold text-black mb-4 transition-all duration-700 ease-in-out">Pamekasan</h2>
+            <div class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh]
+            overflow-x-hidden js-autohide-scroll overflow-y-auto">
+                <div class="p-4">
+                    <span>🗺️ Fakta Geografis & Umum
+                    </span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>“Jantung Pulau Madura”</strong> — Pamekasan terletak di tengah-tengah Pulau Madura,
+                            menjadikannya penghubung antara Bangkalan di barat dan Sumenep di timur.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Luas Wilayah</strong> — Sekitar 792 km² dengan 13 kecamatan dan lebih dari 180
+                            desa/kelurahan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kota Bersih dan Tertib</strong> — Pamekasan dikenal sebagai kabupaten terbersih di
+                            Madura dan pernah meraih penghargaan Adipura dari pemerintah pusat.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pusat Pendidikan dan Pemerintahan Madura</strong> — Banyak kantor instansi dan
+                            kampus ternama Madura berpusat di Pamekasan.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🕌 Fakta Budaya & Sejarah</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Asal Nama “Pamekasan”</strong> — Konon berasal dari kata “Mekkas” yang berarti suci,
+                            karena banyak ulama besar lahir di sini.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Keraton Mandhilaras</strong> — Sisa peninggalan Kerajaan Pamekasan yang berdiri pada
+                            abad ke-17, kini menjadi situs sejarah dan budaya.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Tokoh Legendaris Raden Segoro</strong> — Pejuang dari Pamekasan yang terkenal dalam
+                            kisah perjuangan rakyat Madura melawan penjajahan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kota Santri & Ulama</strong> — Menjadi pusat pendidikan Islam di Madura, dengan
+                            pesantren terkenal seperti Pondok Pesantren Mambaul Ulum Bata-Bata dan Al-Falah Palengaan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Tradisi Rokat Tase’ & Petik Laut</strong> — Masih dilestarikan di pesisir Pasean dan
+                            Pademawu sebagai wujud syukur atas hasil laut.
+                        </li>
+                    </ol>
+                    <br>
+                    <span>🌄 Fakta Alam & Wisata</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Bukit Cinta Pamekasan (Bukit Brukoh)</strong> — Spot romantis populer untuk
+                            menikmati panorama kota dari ketinggian.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Jumiang</strong> — Pantai eksotis di Pademawu dengan tebing curam, laut biru,
+                            dan legenda lokal menarik.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Talang Siring</strong> — Dikenal karena deretan pohon cemara yang rindang dan
+                            suasana sejuk.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Air Terjun Ahatan & Blaban</strong> — Oase tersembunyi di tengah bukit kapur, masih
+                            alami dan jarang dijamah wisatawan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Puncak Ratu & Bukit Kehi</strong> — Lokasi favorit anak muda untuk berkemah dan
+                            menikmati matahari terbit.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🍲 Fakta Kuliner</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kaldu Konyal & Kaldu Kokot</strong> — Hidangan berkuah kental berbahan daging atau
+                            tulang sapi, khas Madura dan populer di Pamekasan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Sate Lalat Pamekasan</strong> — Sate mini berukuran kecil, dijual di malam hari
+                            dengan aroma menggoda — bukan dari lalat, tentu saja.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Nasi Serpang</strong> — Hidangan nasi lengkap dengan ikan tongkol, sambal petis, dan
+                            lauk kecil lainnya, khas pesisir Pamekasan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Bebek Songkem Tunjung</strong> — Bebek dikukus dalam daun pisang dengan bumbu
+                            rempah, menghasilkan cita rasa gurih dan lembut.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🎨 Fakta Ekonomi & Kreativitas</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Sentra Batik Madura</strong> — Pamekasan dikenal sebagai pusat batik Madura paling
+                            produktif, terutama dari daerah Proppo dan Klampar dengan motif berani dan warna mencolok.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pasar 17 Agustus Pamekasan</strong> — Tempat utama penjualan batik tradisional
+                            Madura, ramai dikunjungi wisatawan domestik dan mancanegara.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Desa Wisata Blaban</strong> — Dikenal dengan pengrajin batik tulis dan atraksi
+                            budaya lokalnya.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">💫 Fakta Sosial & Modern</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kota Hijau & Ramah Lingkungan</strong> — Pemerintah Pamekasan aktif mengembangkan
+                            program “Pamekasan Smart City” dan “Green City”.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pusat Event Madura</strong> — Festival besar seperti Madura Ethnic Carnival dan
+                            Festival Batik Nasional rutin digelar di Pamekasan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Masyarakat Religius & Ramah</strong> — Dikenal dengan keramahan serta kuatnya
+                            nilai-nilai “bhupa’, bhabhu’, ghuru, rato” (ayah, ibu, guru, pemimpin) — filosofi hidup
+                            orang Madura.
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="modal-sumenep"
+        class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[70%] md:w-[60%] h-[50%] md:h-[60%] overflow-hidden">
+
+        <!-- LAYER BACKGROUND DENGAN MASK -->
+        <div class="absolute inset-0 
+        bg-[url('https://www.oyorooms.com/travel-guide/id/wp-content/uploads/sites/6/2022/12/Surga-Tersembunyi-Madura-7-Wisata-Sumenep-Terbaik.jpg')]
+        bg-cover bg-center
+        [mask-image:linear-gradient(to_top,transparent_40%,black_90%)]
+        lg:[mask-image:linear-gradient(to_left,transparent_40%,black_80%)]
+        [mask-size:100%_100%] [mask-repeat:no-repeat]">
+        </div>
+
+        <!-- TOMBOL CLOSE (POJOK KANAN ATAS) -->
+        <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+            <button data-close-button
+                class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+        </div>
+
+        <!-- ISI KONTEN -->
+        <div class="absolute z-10 text-center w-full px-8 lg:px-3 bottom-10
+        md:bottom-10 lg:bottom-auto lg:top-1/2 lg:right-1 lg:-translate-y-1/2 lg:w-[40%] lg:text-left
+        transition-all duration-700 ease-in-out">
+
+            <h2 class="text-3xl font-bold text-black mb-4 transition-all duration-700 ease-in-out">Sumenep</h2>
+            <div class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh]
+            overflow-x-hidden js-autohide-scroll overflow-y-auto">
+                <div class="p-4">
+                    <span>
+                        🗺️ Fakta Geografis & Umum
+                    </span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kabupaten Paling Timur di Madura</strong> — Sumenep terletak di ujung timur Pulau
+                            Madura dan merupakan kabupaten terluas di Pulau Madura dengan wilayah mencapai lebih dari
+                            2.000 km².
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Memiliki Ratusan Pulau!</strong> — Terdiri atas 126 pulau, baik berpenghuni maupun
+                            tidak, sehingga Sumenep sering disebut sebagai Kabupaten Kepulauan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pusat Pemerintahan di Daratan</strong> — Namun sekitar sepertiga wilayahnya berupa
+                            lautan, meliputi kepulauan seperti Kangean, Sapudi, Raas, Masalembu, hingga Gili Genting.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Gerbang Wisata Bahari Madura</strong> — Karena keindahan pantai dan pulau-pulaunya,
+                            Sumenep dijuluki “Maldives-nya Madura”.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🕌 Fakta Budaya & Sejarah</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Keraton Sumenep</strong> — Salah satu keraton tertua di Jawa Timur (dibangun tahun
+                            1762) yang kini menjadi Museum Keraton Sumenep.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Makam Asta Tinggi</strong> — Kompleks makam megah raja-raja Sumenep, menjadi
+                            destinasi religi dan sejarah penting.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Keturunan Bangsawan Campuran</strong> — Banyak bangsawan Sumenep merupakan keturunan
+                            Arab, Jawa, dan Madura hasil pernikahan politik masa lampau.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Daerah Awal Penyebaran Islam di Madura</strong> — Islam mulai berkembang di Madura
+                            sejak abad ke-15 melalui wilayah Sumenep.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Seni Tradisional Topeng Dalang</strong> — Kesenian khas Sumenep yang menggambarkan
+                            kisah legenda dan nilai moral melalui pertunjukan topeng kayu berwarna mencolok.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Karapan Sapi Sumenep</strong> — Dikenal menyelenggarakan karapan sapi paling meriah
+                            dan prestisius di Madura.
+                        </li>
+                    </ol>
+                    <br>
+                    <span>🌴 Fakta Alam & Wisata</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Pulau Gili Iyang</strong> — Dikenal sebagai pulau dengan kadar oksigen tertinggi
+                            kedua di dunia setelah Laut Baltik.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pulau Gili Labak</strong> — Surga snorkeling dan diving dengan laut sebening kaca
+                            dan pasir putih bersih.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pulau Kangean</strong> — Pulau terbesar di Sumenep, kaya hasil laut, minyak bumi,
+                            dan budaya unik tersendiri.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Slopeng</strong> — Dikenal dengan bukit pasir alami dan deretan pohon kelapa
+                            yang indah.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Pantai Lombang</strong> — Terkenal karena cemara udang, jenis cemara langka yang
+                            hanya tumbuh di sini dan di China.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Bukit Tinggi Daramista</strong> — Spot kekinian untuk menikmati sunset dan
+                            pemandangan kota dari ketinggian.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">🍲 Fakta Kuliner</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Sate Gajah</strong> — Meski namanya unik, bukan dari daging gajah 😄, melainkan sate
+                            sapi khas Sumenep dengan potongan besar dan bumbu kental.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kaldu Sumenep</strong> — Sup daging sapi gurih khas Madura yang biasa disantap
+                            dengan lontong.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Nasi Jagung & Lorjuk</strong> — Menu khas warga pesisir dengan cita rasa gurih dan
+                            pedas ringan.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kue Apem Sumenep</strong> — Hidangan manis tradisional yang selalu hadir dalam acara
+                            adat dan keagamaan.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">⚓ Fakta Ekonomi & Kehidupan</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Pelabuhan Kalianget</strong> — Pelabuhan tertua di Madura dan pintu utama menuju
+                            kepulauan Kangean dan sekitarnya.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Kaya Sumber Daya Alam</strong> — Sumenep memiliki cadangan gas, minyak bumi, serta
+                            potensi garam dan perikanan besar di pesisirnya.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Batik Sumenep</strong> — Motifnya elegan dan lembut, dikenal sebagai “Batik
+                            Bangsawan Madura” karena berasal dari lingkungan keraton.
+                        </li>
+                    </ol>
+                    <br>
+                    <span class="text-center -left-px">💫 Fakta Sosial & Modern</span>
+                    <br>
+                    <ol class="list-decimal list-outside space-y-2">
+                        <li class="pl-5 text-justify">
+                            <strong>Kota Religius & Toleran</strong> — Masyarakatnya religius namun tetap ramah dan
+                            terbuka terhadap pendatang.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Dialek dan Logat Beragam</strong> — Karena banyak kepulauan, bahasa Madura di
+                            Sumenep punya variasi logat unik di tiap pulau, seperti dialek Kangean.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Festival Karapan Sapi Nasional</strong> — Sumenep menjadi tuan rumah ajang karapan
+                            sapi tingkat nasional paling bergengsi di Madura.
+                        </li>
+                        <li class="pl-5 text-justify">
+                            <strong>Julukan “Bumi Sumekar”</strong> — Singkatan dari Sumenep Eling Karomah, melambangkan
+                            daerah yang religius, indah, dan bersejarah.
+                        </li>
+                    </ol>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <div id="overlay" class="fixed z-53 top-0 bottom-0 right-0 left-0 bg-black/50 opacity-0
+    pointer-events-none"></div>
+
+
+
+
+    <div class="unggul max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 px-10 py-10 my-20 w-[90%]
+        rounded-xl bg-white/20 backdrop-blur-xl border border-white/100 shadow-2xl ring-1 ring-white/10">
+        <img class="max-w-sm w-full rounded-xl h-auto basis-1/3"
+            src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?q=80&w=830&h=844&auto=format&fit=crop"
+            alt="" />
+        <div class="basis-2/3">
+            <h1 class="text-3xl font-semibold">Tujuan dan Manfaat WebGIS</h1>
+            <p class="text-sm text-slate-500 mt-2">
+                WebGIS ini disusun untuk memudahkan masyarakat Pamekasan dalam mengakses informasi geografis tentang
+                lokasi tentang persebaran wisata dan budaya yang ada di Pamekasan. Dengan tujuan dan manfaat sebagai
+                berikut.
+            </p>
+
+            <div class="flex flex-col gap-10 mt-6">
+                <div class="flex items-center gap-4">
+                    <div class="size-9 p-2 bg-indigo-50 border border-indigo-200 rounded">
+                        <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/flashEmoji.png"
+                            class="size-5" alt="">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-medium text-slate-600">Cari Tau Persebaran Wisata</h3>
+                        <p class="text-sm text-slate-500">WebGIS ini memudahkan pengguna dalam mengakses informasi
+                            geografis tentang lokasi tentang persebaran wisata dan budaya yang ada di Madura.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="size-9 p-2 bg-indigo-50 border border-indigo-200 rounded">
+                        <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/colorsEmoji.png"
+                            alt="">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-medium text-slate-600">Informasi Menarik tentang Madura</h3>
+                        <p class="text-sm text-slate-500">Temukan beragam informasi unik dan menarik seputar wisata
+                            dan
+                            budaya yang ada di Madura.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="size-9 p-2 bg-indigo-50 border border-indigo-200 rounded">
+                        <img src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/aboutSection/puzzelEmoji.png"
+                            alt="">
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-medium text-slate-600">Hitung Jarak hingga Keterjangkauan</h3>
+                        <p class="text-sm text-slate-500">Dengan <em>tools</em> ini, Anda dapat menghitung jarak
+                            dari
+                            lokasi Anda hingga perkiraan waktu ke lokasi wisata dan budaya lainnya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section
+        class="flex flex-col xl:flex-row mx-auto w-6/8 my-15 p-10 border-y-4 border-yellow-400 content-center justify-center items-center">
+        <div class="scale-up-ver-center max-w-xs">
+            <img class=""
+                src="https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/rect6.png"
+                alt="">
+        </div>
+
+        <div class="mt-10 md:ml-20 content-center justify-center items-center text-center">
+            <p class="text-base md:text-xl scale-up-ver-center">Halo, nama saya <strong class="text-emerald-500 text-2xl">Akhmad Barizil Hak</strong> pembuat web ini.
+                Terima kasih telah berkunjung ke web ini.Saya adalah orang yang sangat termotivasi, bersemangat dalam
+                mempelajari hal-hal baru, dan
+                ingin mendapatkan
+                lebih banyak pengalaman di bidang survei pemetaan dan sistem informasi geografis. Saya merupakan
+                orang yang detail, memiliki inisiatif yang besar dalam melakukan suatu pekerjaan, serta mudah
+                beradaptasi di lingkungan pekerjaan untuk mengembangkan karir, meningkatkan kemampuan dan
+                kompetensi diri.</p>
+        </div>
+    </section>
+
+
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+    <!-- Indikator Ukuran Layar -->
+    <!-- <div id="screen-size"
+        class="fixed bottom-3 right-3 bg-black/70 text-white text-sm px-3 py-1 rounded-md font-mono z-[9999] select-none pointer-events-none">
+    </div> -->
+
+
+
+
+    <footer class="bg-[#D2C1B6] text-xs sm:text-base font-semibold text-black text-center mt-8 py-10 tracking-wide">
+        <p>&copy; 2025 Dibuat oleh Akhmad Barizil Hak <br>
+            Dengan penuh cinta dan kesabaran dalam belajar membuat web sendiri.
+        </p>
+    </footer>
+
+    <!-- Feather Icon -->
+    <script>feather.replace()</script>
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cari semua elemen yang ditandai untuk auto-hide
+            const scrollableElements = document.querySelectorAll('.js-autohide-scroll');
+
+            scrollableElements.forEach(element => {
+                let scrollTimeout;
+
+                // 1. Tambahkan kelas styling/transisi ke elemen
+                element.classList.add('js-autohide-scroll');
+
+                const showScrollbar = () => {
+                    // Hapus class sembunyi
+                    element.classList.remove('hide-transition');
+                };
+
+                const hideScrollbar = () => {
+                    // Tambahkan class sembunyi
+                    element.classList.add('hide-transition');
+                };
+
+                // 2. Tambahkan event listener untuk setiap elemen
+                element.addEventListener('scroll', () => {
+                    // Munculkan scrollbar segera setelah scroll dimulai
+                    showScrollbar();
+
+                    // Reset timer
+                    clearTimeout(scrollTimeout);
+
+                    // Set timer untuk menyembunyikan setelah 1 detik idle
+                    scrollTimeout = setTimeout(() => {
+                        hideScrollbar();
+                    }, 300);
+                });
+
+                // 3. Sembunyikan scrollbar saat pertama kali dimuat
+                hideScrollbar();
+            });
+        });
+
+        // const el = document.getElementById("screen-size");
+        // function updateSize() {
+        //     const w = window.innerWidth;
+        //     let bp = "";
+        //     if (w < 640) bp = "base";
+        //     else if (w < 768) bp = "sm";
+        //     else if (w < 1024) bp = "md";
+        //     else if (w < 1280) bp = "lg";
+        //     else if (w < 1536) bp = "xl";
+        //     else bp = "2xl";
+        //     el.textContent = `${w}px (${bp})`;
+        // }
+        // window.addEventListener("resize", updateSize);
+        // updateSize();
+    </script>
+
+</body>
+
+</html>

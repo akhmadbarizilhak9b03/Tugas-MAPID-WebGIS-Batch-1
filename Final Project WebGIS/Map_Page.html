@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peta</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script_modal1.js" defer></script>
+    <script src="script_map.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <script src="graphopper.js" defer></script> -->
+
+    <!-- membuat font deault untuk web -->
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'TASA Explorer', sans-serif; background-color: white;
+            /* border: 3px solid black; */
+        }
+         @theme {--font-tasa: 'TASA Explorer', sans-serif;
+        }
+        
+    </style>
+
+    <!-- cdn mapilibre gl js -->
+    <script src="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- cdn tailwind -->
+
+    <!-- cdn turf js -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+
+    <!-- cdn feather -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body class="min-h-screen flex flex-col static">
+    <header
+        class="flex lg:flex-row flex-col bg-[#1b3c53] shadow-md p-15 sm:p-18 md:p-15 sticky top-0 z-50 items-center justify-between content-center">
+        <div class="flex w-1/5 lg:ml-15 text-center justify-center">
+            <h1 id="judulweb" class="text-white z-20 font-bold text-4xl md:text-5xl lg:text-6xl">
+                <span>👋</span><span>Gh&acirc;pan&eacute;ka</span> <span>Madhur&acirc;</span>
+            </h1>
+        </div>
+
+        <nav class="justify-center items-center content-center">
+            <ul class="flex flex-row mt-10 xs:mt-15 lg:mt-0 gap-7">
+                <li class="text-center mt-3"><a href="Home_Page.html"
+                        class="rounded-2xl text-white
+                    font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Beranda</a>
+                </li>
+                <li class="text-center mt-3"><a href="#"
+                        class="rounded-2xl text-white
+                    border-b-4 border-yellow-500 font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring hover:border-b-0
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Peta</a></li>
+                <li class="text-center mt-3"><a href="Portofolio_Page.html"
+                        class="rounded-2xl text-white
+                    font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Portofolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="m-5 max-w-[80%] mx-auto scale-down-center-normal">
+        <div class="flex justify-center text-center p-5 mx-auto my-5 bg-[#F9F3EF]  rounded-xl shadow-xl">
+            <p class="sm:text-xl md:text-xl lg:text-2xl ">
+                <strong>Dalam halaman ini, Anda dapat memanfaatkan beberapa fungsi dari <em>tool</em> yang disediakan,
+                    berupa <em>heatmap</em> hingga isokron
+                    yang dihitung secara otomatis dan divisualisasikan dalam peta interaktif. <em>Tools</em> yang
+                    tersedia dapat digunakan oleh pengguna yang terdapat dalam <span
+                        class="font-extrabold text-teal-700">GeoLAB</span>. <br>
+                    Definisi dan kegunaan masing-masing <em>tool</em> dijelaskan secara singkat di dalam masing-masing
+                    petunjuk
+                    penggunaannya.
+                </strong>
+            </p>
+        </div>
+    </section>
+
+    <aside
+        class="lg:grid lg:grid-cols-2 lg:grid-rows-2 2xl:flex flex-col 2xl:grid-cols-none 2xl:grid-rows-none 2xl:flex-row justify-between mb-5 sm:m-2 align-middle p-5 gap-15">
+        <p id="p1"
+            class="basis-1/3 p-3 sm:text-base md:text-xl scale-down-center-normal lg:text-left text-center content-center">
+            Halaman ini akan menampilkan peta interaktif. Silakan pilih basemap yang diinginkan dari menu
+            <em>dropdown</em> di
+            pojok kanan
+            atas peta. Anda dapat berinteraksi dengan peta, memperbesar, memperkecil, dan menjelajahi berbagai lokasi
+            sesuai kebutuhan Anda.
+        </p>
+
+        <section data-modal-target="#modal-info" class="relative flex flex-row basis-1/3 p-0 m-10 lg:m-0 overflow-hidden sm:text-base md:text-xl scale-down-center-normal transition-transform duration-300 lg:max-w-full w-[60vw] mx-auto
+            hover:scale-105 rounded-3xl border-5 border-yellow-500 hover:cursor-pointer">
+            <!-- Background layer -->
+            <div
+                class="absolute inset-0 mask-l-from-5% mask-l-to-80% bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Screenshot%202025-10-27%20131811.png')] bg-cover bg-center z-0">
+            </div>
+
+            <!-- Content layer -->
+            <div class="relative flex flex-row w-full z-10">
+                <div class="text-center content-center basis-1/3 p-5">
+                    <span class="text-xl sm:text-3xl font-extrabold">Memahami <br><em>Pop-up</em> Informasi</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section data-modal-target="#modal-tool-heatmap" class="relative flex flex-row basis-1/3 p-0 m-10 lg:m-0 overflow-hidden sm:text-base md:text-xl scale-down-center-normal transition-transform duration-300 lg:max-w-full w-[60vw] mx-auto
+            hover:scale-105 rounded-3xl border-5 border-yellow-500 hover:cursor-pointer">
+            <!-- Background layer -->
+            <div
+                class="absolute inset-0 mask-l-from-5% mask-l-to-80% bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/tamnel%20heatmap.png')] bg-cover bg-left z-0">
+            </div>
+
+            <!-- Content layer -->
+            <div class="relative flex flex-row w-full z-10">
+                <div class="text-center content-center basis-1/3 p-5">
+                    <span class="text-xl sm:text-3xl font-extrabold">Petunjuk Penggunaan <em>Tools</em> Heatmap</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section data-modal-target="#modal-tool-isokron" class="relative flex flex-row basis-1/3 p-0 m-10 lg:m-0 overflow-hidden sm:text-base md:text-xl scale-down-center-normal transition-transform duration-300 lg:max-w-full w-[60vw] mx-auto
+            hover:scale-105 rounded-3xl border-5 border-yellow-500 hover:cursor-pointer">
+            <!-- Background layer -->
+            <div
+                class="absolute inset-0 mask-l-from-5% mask-l-to-80% bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/tamnel%20isokron.png')] bg-cover bg-center z-0">
+            </div>
+
+            <!-- Content layer -->
+            <div class="relative flex flex-row w-full z-10">
+                <div class="text-center content-center basis-1/3 p-5">
+                    <span class="text-xl sm:text-3xl font-extrabold">Petunjuk Penggunaan <em>Tools</em> Isokron</span>
+                </div>
+
+            </div>
+        </section>
+
+
+    </aside>
+
+    <section id="map"
+        class="z-10 relative scale-down-center-normal
+         w-11/12 sm:w-[97%] h-[60vh] sm:h-[70vh] lg:h-[75vh] bg-white border-4 border-gray-300 rounded-[15px] mx-auto my-2">
+        <div
+            class="absolute right-5 top-5 z-10 bg-white bg-opacity-70 p-2 rounded-xl border-2 border-gray-400 shadow-lg">
+            <p class="font-bold font-tasa text-base">Pilih basemap</p>
+            <div class="mt-2 text-center">
+                <select id="basemapSelect" class="p-2 border border-gray-400 rounded font-tasa">
+                    <option value="street-2d-building">Streets</option>
+                    <option value="satellite">Satellite</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div id="geolab" class="absolute flex flex-col rounded-xl bg-[#D2C1B6] w-[80px] h-[200px] z-5 inset-y-1/2 -left-10
+        backdrop-blur-md text-right justify-center p-4 font-tasa hover:opacity-100 hover:cursor-default hover:scale-103
+        transition-opacity duration-300">
+            <span class="text-xl font-extrabold text-white">G<br>e<br>o<br>L<br>A<br>B
+            </span>
+
+        </div>
+
+        <div id="tools" class="absolute flex flex-col rounded-xl bg-[#63b0e8] w-[80px] h-[200px] z-5 inset-y-1/2 -left-20
+  backdrop-blur-md opacity-0 text-right p-3 content-center justify-center items-end font-tasa
+  transition-all duration-700 ease-in-out pointer-events-none">
+
+            <button id="heatmap-toggle" class="bg-white/90 backdrop-blur-md h-9 font-tasa
+    inset-y-2/10 px-1 py-1 rounded-lg shadow-md text-2xl text-center hover:bg-gray-200">
+                🔥
+            </button>
+            <button title="Isokron" id="isokron-toggle" class="bg-white/90 backdrop-blur-md h-9 font-tasa mt-8
+    inset-y-2/10 px-1 py-1 rounded-lg shadow-md text-2xl text-center hover:bg-gray-200">
+                🧭
+            </button>
+        </div>
+
+        <aside id="asideMap" style="transform: translateX(calc(-100% - 2rem));"
+            class="absolute z-10 text-white bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20
+  p-5 font-tasa rounded-xl shadow-lg w-[40%] sm:w-[38%] md:w-[35%] lg:w-[25%] xl:w-[22%] 2xl:w-[15%] transition-transform duration-500 ease-in-out left-2 overflow-y-auto overflow-x-hidden">
+
+            <div class="text-white absolute pr-2 text-sm right-0 top-0 z-20 mb-2">
+                <button data-close-button
+                    class="close-button hover:cursor-pointer bg-red-500 my-2 px-1 rounded-lg">&times;</button>
+            </div>
+
+            <div>
+                <h1 class="text-lg sm:text-2xl font-bold text-black text-center">Perhitungan Isokron</h1>
+                <h2 class="text-[13px] md:text-lg mt-2 text-black">
+                    Menampilkan tools isokron untuk menghitung jarak tempuh
+                </h2>
+
+                <div class="mt-5 text-black">
+                    <p class="mb-2 font-bold">Pilih moda transportasi</p>
+                    <div>
+                        <input type="radio" id="motorcycle" name="profile" value="motorcycle">
+                        <label for="motorcycle">Motor</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="foot" name="profile" value="foot">
+                        <label for="foot">Jalan Kaki</label>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <p class="mb-2 text-black font-bold">Pilih durasi (dalam menit)</p>
+                    <input type="number" id="durasi" name="duration" value="100"
+                        class="focus:border-teal-400 border-2 w-full px-2 py-1 rounded-xl text-black">
+                </div>
+
+                <button id="tomb-run"
+                    class="mt-5 bg-amber-700 w-full p-2 rounded-xl cursor-pointer hover:bg-amber-400 active:scale-90">
+                    Jalankan
+                </button>
+
+
+
+                <svg id="loading" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    class="w-6 h-6 animate-spin mx-auto mt-4" style="display: none">
+                    <!-- SVG isi loader -->
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none"
+                        stroke-dasharray="31.4, 31.4" stroke-linecap="round">
+                    </circle>
+                </svg>
+
+                <hr class="mt-4" />
+
+                <ul id="result"
+                    class=" text-black mt-4 p-3 border border-gray-400 rounded-lg bg-white/20 backdrop-blur-sm text-sm max-h-[35vh] js-autohide-scroll overflow-y-auto overflow-x-hidden ">
+                </ul>
+            </div>
+        </aside>
+    </section>
+
+
+    <section id="modal-info" class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[85%] md:w-[60%] xl:max-h-[80%] max-h-[70%] overflow-hidden
+        js-autohide-scroll overflow-y-auto">
+
+        <div class="mb-5">
+            <!-- TOMBOL CLOSE (POJOK KANAN ATAS) -->
+            <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+                <button data-close-button
+                    class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+            </div>
+        </div>
+
+        <div class="p-15 js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl max-w-full flex-shrink-0 w-[500px] h-[300px] bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Screenshot%202025-10-27%20131811.png')] bg-cover bg-center">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <span class="text-xl font-bold">Panduan Memahami <em>Pop up</em> Informasi</span>
+                            <p class="text-black">
+                                Ketika pengguna melakukan klik pada salah satu titik objek wisata, pengguna dapat
+                                menemukan tamnbahan informasi mengenai objek wisata tersebut.
+                                <em>Pop up</em> menu memberikan sekilas informasi mengenai objek wisata yang terdiri
+                                dari
+                                tiga bagian secara berurutan, yaitu:
+                            </p>
+                            <ol class="list-decimal text-black mt-4 p-2 pl-8 border border-gray-400 rounded-lg text-left
+                            bg-white/20 backdrop-blur-sm text-sm max-h-[35vh] break-words whitespace-normal">
+                                <li>Nama Tempat Objek Wisata</li>
+                                <li>Kategori Tempat Wisata</li>
+                                <li>Jenis Objek Wisata</li>
+                                <li>Alamat Objek Wisata</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15 js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl max-w-full flex-shrink-0 w-[500px] h-[300px] bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/legenda.png')] bg-cover bg-center">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Anda dapat melihat kategori titik objek wisata berdasarkan warna ikon yang
+                                ditampilkan pada peta interaktif. Terdapat 5 (lima) kategori objek wisata yang
+                                berbeda, yaitu:
+                            </p>
+                            <ol class="list-decimal text-black mt-4 p-2 pl-8 border border-gray-400 rounded-lg text-left
+                            bg-white/20 backdrop-blur-sm text-sm max-h-[35vh] break-words whitespace-normal">
+                                <li>Objek Wisata Sejarah</li>
+                                <li>Objek Wisata Budaya</li>
+                                <li>Objek Wisata Alam</li>
+                                <li>Objek Wisata Rekreasi</li>
+                                <li>Objek Wisata Olahraga</li>
+                            </ol>
+                            <p class="text-black mt-4">
+                                Setiap kategori objek wisata memiliki warna ikon yang berbeda untuk memudahkan
+                                pengguna dalam mengidentifikasi jenis objek wisata yang ada pada peta interaktif.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="modal-tool-heatmap" class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[85%] md:w-[60%] xl:max-h-[80%] max-h-[70%] overflow-hidden
+       js-autohide-scroll overflow-y-auto">
+        <div class="mb-5">
+            <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+                <button data-close-button
+                    class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+            </div>
+        </div>
+        <div class="p-5 mx-auto align-middle justify-center">
+
+            <div class="flex flex-col xl:flex-row justify-center mx-auto items-center max-w-[90%]">
+
+                <div class="ml-0 text-center">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out h-fit break-words whitespace-normal">
+                        <div class="p-4">
+                            <span class="text-xl font-bold">Definisi dan Kegunaan dari <em>Tool Heatmap</em> </span>
+                            <p class="text-black">
+                                <em><strong>Heatmap</strong></em> adalah representasi visual dari kepadatan atau
+                                intensitas data geografis dalam suatu area.
+                            </p>
+                            <ol class="list-decimal text-black mt-4 p-2 pl-8 border border-gray-400 rounded-lg text-left
+                            bg-white/20 backdrop-blur-sm text-sm max-h-fit break-words whitespace-normal">
+                                <li><strong>Menampilkan kepadatan data</strong>: Misalnya, lokasi kecelakaan, titik
+                                    kriminalitas, atau konsentrasi pelanggan.</li>
+                                <li><strong>Menganalisis pola spasial</strong>: Membantu melihat area panas (hotspot)
+                                    dan area dingin (coldspot).</li>
+                                <li><strong>Mendukung pengambilan keputusan</strong>: Misalnya, menentukan lokasi
+                                    optimal untuk membuka cabang baru berdasarkan konsentrasi pelanggan.</li>
+                                <li><strong>Visualisasi data real-time</strong>: Seperti pelacakan kendaraan, laporan
+                                    bencana, atau aktivitas pengguna.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15  js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                     bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Ikon%20Geolab.png')] bg-cover bg-left">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <span class="text-xl font-bold">Panduan Menggunakan <em>Tools</em> dari GeoLAB
+                                (Heatmap)</span>
+                            <p class="text-black">
+                                Dalam bagian ini, terdapat kumpulan <em>tools</em> yang dapat digunakan oleh pengguna
+                                yang terdapat dalam <strong>GeoLAB</strong>.
+                                Pengguna dapat menemukan sebuah ikon <strong>GeoLAB</strong> di sebelah kiri
+                                peta.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15 js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                    bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Macam%20Tools.png')] bg-cover bg-center">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Kemudian, akan tampil 2 pilihan <em>tools</em> yang dapat digunakan. Untuk melakukan
+                                proses <em>heatmap</em> pada
+                                peta interaktif, pengguna dapat menekan ikon <strong class="text-2xl">🔥</strong>
+                                (bertanda api).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15 js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                    bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Hasil%20heatmap.png')] bg-cover bg-center">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Nanti akan tampil hasil <em>heatmap</em> pada peta interaktif sesuai dengan titik
+                                objek wisata yang ada. <em>Heatmap</em> yang tampil akan memberikan gambaran visual
+                                mengenai konsentrasi objek wisata di berbagai lokasi wisata pada peta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modal-tool-isokron" class="modal relative z-55 mx-auto border-4 border-gray-400 bg-slate-200 rounded-xl w-[85%] md:w-[60%] xl:max-h-[80%] max-h-[70%] overflow-hidden 
+       js-autohide-scroll overflow-y-auto">
+        <div class="mb-5">
+            <div class="text-white absolute pr-2 text-4xl right-0 top-0 z-20">
+                <button data-close-button
+                    class="close-button hover:cursor-pointer bg-red-500 my-2 px-2 rounded-lg">&times;</button>
+            </div>
+        </div>
+
+        <div class="p-5 mx-auto align-middle justify-center">
+
+            <div class="flex flex-col xl:flex-row justify-center mx-auto items-center max-w-[90%]">
+
+                <div class="ml-0 text-center">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out h-fit break-words whitespace-normal">
+                        <div class="p-4">
+                            <span class="text-xl font-bold">Definisi dan Kegunaan dari <em>Tool</em> Isokron</span>
+                            <p class="text-black">
+                                <strong>Isokron</strong> adalah poligon yang menunjukkan area yang dapat dijangkau dari
+                                suatu titik dalam
+                                waktu tertentu, berdasarkan moda transportasi.
+                            </p>
+                            <ol class="list-decimal text-black mt-4 p-2 pl-8 border border-gray-400 rounded-lg text-left
+                            bg-white/20 backdrop-blur-sm text-sm max-h-fit break-words whitespace-normal">
+                                <li><strong>Analisis aksesibilitas</strong>: Mengetahui area yang bisa dijangkau dalam
+                                    10, 20, atau 30 menit dari suatu lokasi.</li>
+                                <li><strong>Perencanaan layanan publik</strong>: Seperti rumah sakit, sekolah, atau
+                                    pemadam kebakaran — untuk memastikan cakupan wilayah.</li>
+                                <li><strong>Optimasi lokasi fasilitas</strong>: Menentukan lokasi terbaik untuk gudang,
+                                    toko, atau kantor berdasarkan jangkauan pelanggan.</li>
+                                <li><strong>Simulasi moda transportasi</strong>: Menampilkan perbedaan jangkauan antara
+                                    jalan kaki, sepeda, motor, atau mobil.</li>
+                            </ol>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15   js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl w-full flex-shrink-0 max-w-[500px] aspect-[4/3]
+                    bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Ikon%20Geolab.png')] bg-cover bg-left">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <span class="text-xl font-bold">Panduan Menggunakan <em>Tools</em> dari GeoLAB</span>
+                            <p class="text-black">
+                                Dalam bagian ini, terdapat kumpulan <em>tools</em> yang dapat digunakan oleh pengguna
+                                yang terdapat dalam <strong>GeoLAB</strong>.
+                                Pengguna dapat menemukan sebuah ikon <strong>GeoLAB</strong> di sebelah kiri
+                                peta.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15 js-autohide-scroll overflow-x-auto lg:overflow-x-hidden">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                    bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Macam%20Tools.png')] bg-cover bg-center">
+
+                </div>
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Kemudian, akan tampil 2 pilihan <em>tools</em> yang dapat digunakan. Untuk melakukan
+                                proses isokron pada peta interaktif, pengguna dapat menekan ikon bertanda kompas,
+                                seperti <strong class="text-2xl">🧭</strong> .
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15  js-autohide-scroll overflow-x-auto lg:overflow-x-hidden text">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/isokron1.png')] bg-cover bg-center">
+                </div>
+
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Setelah itu, akan muncul tampilan parameter yang dibutuhkan untuk menjalankan proses
+                                isokron. Pengguna perlu memilih jenis moda transportasi yang
+                                diinginkan dan dapat mengubah nilai durasi dengan satuan menit. Lalu, pengguna dapat
+                                menekan tombol "Jalankan" untuk menjalankan proses isokron.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15  js-autohide-scroll overflow-x-auto lg:overflow-x-hidden text">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/isokron4.png')] bg-cover bg-center">
+                </div>
+
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Ketika Anda melakukan klik pada tombol Isokron tersebut, Anda dapat klik secara
+                                sembarang lokasi yang diingikan untuk menjadi pusat lokasi dan koordinat yang akan
+                                diproses sebagai parameter Isokron sebelum Anda klik tombol 'Jalankan'. Titik yang telah
+                                Anda pilih, akan tampak berwarna ungu seperti ditunjukkan pada gambar di atas. <br><br>
+
+                                <strong>Catatan:</strong> Jika Anda tidak melakukan pemilihan titik dengan klik pada
+                                peta, secara default
+                                titik pusat yang digunakan dalam proses Isokron akan ditentukan oleh sistem.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15  js-autohide-scroll overflow-x-auto lg:overflow-x-hidden text">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/isokron6.png')] bg-cover bg-left">
+                </div>
+
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Jika ingin mengganti lokasi dan koordinat titik lain, Anda hanya perlu klik di lokasi
+                                titik lain dan klik 'Jalankan' kembali agar proses Isokron dijalankan ulang. Begitu pula
+                                halnya jika Anda ingin mengubah parameter yang ada di samping bagian peta, tombol
+                                'Jalankan' perlu diklik kembali.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15  js-autohide-scroll overflow-x-auto lg:overflow-x-hidden text">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/isokron7.png')] bg-cover bg-left ">
+                </div>
+
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Setelah menjalankan proses Isokron, hasilnya akan ditampilkan pada peta interaktif
+                                dalam bentuk batas poligon berwarna kuning dan garis tepi berwarna biru yang menunjukkan
+                                area yang dapat dijangkau dari titik pusat
+                                yang telah dipilih sebelumnya, sesuai dengan durasi dan moda transportasi yang telah
+                                ditentukan. <br><br>Dari hasil tersebut pula, Anda dapat melihat daftar nama lokasi
+                                objek wisata yang
+                                dapat dijangkau dalam durasi waktu yang telah ditentukan pada bagian panel di sebelah
+                                kiri peta interaktif.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-15  js-autohide-scroll overflow-x-auto lg:overflow-x-hidden text">
+
+            <div class="flex flex-col xl:flex-row justify-center items-center min-w-max md:min-w-0">
+
+                <div
+                    class="xl:basis-1/2 border-4 border-[#1b3c53] rounded-2xl flex-shrink-0 w-full max-w-[500px] aspect-[4/3]
+                bg-[url('https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/isokron8.png')] bg-cover bg-left ">
+                </div>
+
+
+                <div class="ml-0 xl:ml-5 text-center xl:text-left xl:basis-1/2 flex-shrink-0 w-[500px]">
+                    <div
+                        class="text-gray-700 leading-relaxed transition-all duration-700 ease-in-out max-h-[25vh] lg:max-h-[45vh] break-words whitespace-normal">
+                        <div class="p-4">
+                            <p class="text-black">
+                                Daftar angka pada daftar nama lokasi objek wisata di panel kiri, juga divisualisasikan
+                                pada peta interaktif dengan tanda angka yang sesuai pada masing-masing lokasi objek
+                                wisata. Sehingga, Anda dapat dengan mudah mengidentifikasi nama lokasi objek wisata yang
+                                dapat dijangkau
+                                dalam durasi waktu yang telah ditentukan.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div id="overlay" class="fixed z-53 top-0 bottom-0 right-0 left-0 bg-black/50 opacity-0
+    pointer-events-none"></div>
+
+    <footer
+        class="bg-[#D2C1B6] text-[12px] sm:text-[15px] font-semibold text-black text-center mt-20 py-10 tracking-wide">
+        <p>
+            &copy; 2025 Dibuat oleh Akhmad Barizil Hak <br />
+            Dengan penuh cinta dan kesabaran dalam belajar membuat web sendiri.
+        </p>
+    </footer>
+
+    <button class="dark-toggle z-20" onclick="toggleDarkMode()">🌙</button>
+
+
+
+    <!-- Indikator Ukuran Layar -->
+    <!-- <div id="screen-size"
+        class="fixed bottom-3 right-3 bg-black/70 text-white text-sm px-3 py-1 rounded-md font-mono z-[9999] select-none pointer-events-none">
+    </div> -->
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cari semua elemen yang ditandai untuk auto-hide
+            const scrollableElements = document.querySelectorAll('.js-autohide-scroll');
+
+            scrollableElements.forEach(element => {
+                let scrollTimeout;
+
+                // 1. Tambahkan kelas styling/transisi ke elemen
+                element.classList.add('js-autohide-scroll');
+
+                const showScrollbar = () => {
+                    // Hapus class sembunyi
+                    element.classList.remove('hide-transition');
+                };
+
+                const hideScrollbar = () => {
+                    // Tambahkan class sembunyi
+                    element.classList.add('hide-transition');
+                };
+
+                // 2. Tambahkan event listener untuk setiap elemen
+                element.addEventListener('scroll', () => {
+                    // Munculkan scrollbar segera setelah scroll dimulai
+                    showScrollbar();
+
+                    // Reset timer
+                    clearTimeout(scrollTimeout);
+
+                    // Set timer untuk menyembunyikan setelah 1 detik idle
+                    scrollTimeout = setTimeout(() => {
+                        hideScrollbar();
+                    }, 300);
+                });
+
+                // 3. Sembunyikan scrollbar saat pertama kali dimuat
+                hideScrollbar();
+            });
+        });
+
+       
+        // const el = document.getElementById("screen-size");
+        // function updateSize() {
+        //     const w = window.innerWidth;
+        //     let bp = "";
+        //     if (w < 640) bp = "base";
+        //     else if (w < 768) bp = "sm";
+        //     else if (w < 1024) bp = "md";
+        //     else if (w < 1280) bp = "lg";
+        //     else if (w < 1536) bp = "xl";
+        //     else bp = "2xl";
+        //     el.textContent = `${w}px (${bp})`;
+        // }
+        // window.addEventListener("resize", updateSize);
+        // updateSize();
+    </script>
+
+
+
+
+</body>
+
+</html>

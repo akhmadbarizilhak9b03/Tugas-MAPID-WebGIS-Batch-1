@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css2?family=TASA+Explorer:wght@400..800&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
+    <!-- membuat font deault untuk web -->
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'TASA Explorer', sans-serif; background-color: white;
+            /* border: 3px solid black; */
+        }
+         @theme {--font-tasa: 'TASA Explorer', sans-serif;
+        }
+        
+    </style>
+
+    <!-- cdn mapilibre gl js -->
+    <script src="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@^5.7.3/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <!-- cdn tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- cdn feather -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+
+
+<body class=" min-h-screen flex flex-col static" onload="getData()">
+    <header
+        class="flex lg:flex-row flex-col bg-[#1b3c53] shadow-md p-15 sm:p-18 md:p-15 sticky top-0 z-50 items-center justify-between content-center">
+        <div class="flex w-1/5 lg:ml-15 text-center justify-center">
+            <h1 id="judulweb" class="text-white z-20 font-bold text-4xl md:text-5xl lg:text-6xl">
+                <span>👋</span><span>Gh&acirc;pan&eacute;ka</span> <span>Madhur&acirc;</span>
+            </h1>
+        </div>
+
+        <nav class="soto justify-center items-center content-center">
+            <ul class="soto1 flex flex-row mt-10 xs:mt-15 lg:mt-0 gap-7">
+                <li class="text-center mt-3"><a href="Home_Page.html"
+                        class="rounded-2xl text-white
+                    font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring 
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Beranda</a>
+                </li>
+                <li class="text-center mt-3"><a href="Map_Page.html"
+                        class="rounded-2xl text-white
+                    font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Peta</a></li>
+                <li class="text-center mt-3"><a href="#"
+                        class="rounded-2xl text-white
+                    border-b-4 border-yellow-500 font-bold py-3 px-4 hover:bg-[#F9F3EF] active:scale-90 hover:ring hover:border-b-0
+                    text-sm sm:text-lg md:text-xl lg:text-2xl transition duration-150 ease-in-out hover:text-black">Portofolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="riwayat"
+        class="flex flex-col md:flex-row gap-y-4 md:gap-x-4 m-3 p-6 justify-evenly scale-down-center-normal">
+        <div
+            class="border-[3px] p-4 gap-x-3 gap-y-2 items-center rounded-[10px] bg-zinc-100 shadow-lg hover:border-zinc-300 transition-transform duration-300 hover:-translate-y-2">
+            <h1 class="font-bold text-[25px] border-b-2 border-[#1B3C53] pb-2 mb-4 text-center">
+                Latar Belakang Pendidikan
+            </h1>
+            <ol class="list-decimal list-inside px-4 text-base sm:text-lg lg:text-xl">
+                <li>SD Negeri Bugih III Pamekasan</li>
+                <li>SMP Negeri 1 Pamekasan</li>
+                <li>SMA Negeri 3 Pamekasan</li>
+                <li>Institut Teknologi Sepuluh Nopember Surabaya</li>
+            </ol>
+        </div>
+
+        <div
+            class="border-[3px] p-4 gap-x-3 gap-y-2 items-center rounded-[10px] bg-zinc-100 shadow-lg hover:border-zinc-300 transition-transform duration-300 hover:-translate-y-2">
+            <h1 class="font-bold text-[25px] border-b-2 border-[#1B3C53] pb-2 mb-4 text-center">
+                Latar Belakang Karir
+            </h1>
+            <ol class="list-decimal list-inside px-4 text-base sm:text-lg lg:text-xl">
+                <li>Freelancer Kartografi</li>
+                <li>Badan Pertanahan Nasional Provinsi Sumatera Barat</li>
+                <li>PT Aria Agri Indonesia</li>
+                <li>PT Terra Drone Indonesia</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="mt-5 mx-10">
+        <h1 class="text-4xl font-bold my-5">Karya yang Pernah Dibuat</h1>
+        <p class="text-base sm:text-lg lg:text-xl">
+            Berikut beberapa hasil karya yang pernah saya buat dengan disertai
+            hasilnya berupa foto dokumentasi. Karya yang ditampilkan berikut saya
+            rangkum dari berbagai kegiatan saya, seperti saat kuliah, mengikuti
+            pelatihan atau dari hasil pekerjaan yang dilakukan.
+        </p>
+    </div>
+
+    <div class="parapeta m-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 scale-down-center-normal">
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">Peta Topografi</p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Peta%20Sibulue%20-%20Akhmad%20Barizil%20Hak%20Final.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">
+                Peta Tugas Akhir Digitasi Manning
+            </p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/DigitasiManning.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">Peta Tutupan Lahan</p>
+            <img class="p-4 w-full h-80 mxx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Screenshot%202025-09-10%20145333.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">
+                Peta Hasil Pengukuran Stok Volume Garam
+            </p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/OLO17M.jpg" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">
+                Peta Hasil Simulasi Genangan Banjir
+            </p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Print%20peta%201.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">
+                Peta Kerja Pemeliharaan Tugu Orde 2 Sumatera Barat
+            </p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Screenshot%202025-08-28%20220140.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">
+                Peta Batas Administrasi Kelurahan
+            </p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/pamek3.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">Peta Kemiringan Lahan</p>
+            <img class="p-4 w-full h-80 mx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/Screenshot%202025-08-28%20222822.png" />
+        </div>
+
+        <div
+            class="bg-[#f9f3ef] shadow-lg rounded-[10px] text-center transition-transform duration-300 hover:scale-105">
+            <p class="text-[20px] mt-2 pt-3 font-medium">Peta Hydro-Enforced DTM</p>
+            <img class="p-4 w-full h-80 mxx-auto object-contain sm:h-64 md:h-72 lg:h-80"
+                src=" https://raw.githubusercontent.com/akhmadbarizilhak9b03/Tugas-MAPID-WebGIS-Batch-1/refs/heads/main/File%20Gambar/HydroEnforcedDTM.png" />
+        </div>
+    </div>
+
+
+    <!-- Kontainer Pesan Kustom (Mengganti Alert) -->
+    <div id="message-box"
+        class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div id="message-text" class="px-6 py-3 rounded-lg shadow-lg text-white font-semibold"></div>
+    </div>
+
+    <!-- FORMULIR KRITIK DAN SARAN -->
+    <form id="kritikSaranForm" onsubmit="event.preventDefault(); onSubmit();" class="tabelisi flex flex-col items-center text-sm mx-auto p-8 mt-10 md:p-10 max-w-md md:max-w-xl lg:max-w-3xl rounded-xl bg-white/70 backdrop-blur-md border border-white/80 shadow-2xl ring-1 ring-gray-200/50
+        scale-down-center-normal">
+
+        <h1 class="mariisi text-4xl font-extrabold text-indigo-700 pb-4 text-center">Kritik dan Saran</h1>
+        <p id="deskIsian" class="text-lg text-gray-600 text-center pb-8 w-full">
+            Silahkan isikan kritik dan saran Anda mengenai web ini sebagai bentuk dukungan untuk
+            pengembangan dan perbaikan web ini kemudian hari.
+        </p>
+
+        <!-- Input Nama dan Email (Layout ini sudah flex-col di mobile) -->
+        <div class="flex flex-col md:flex-row items-center gap-6 w-full">
+            <div class="w-full">
+                <label class="judultabel text-gray-700 font-medium mb-1" for="nama">Nama</label>
+                <input id="nama"
+                    class="isian h-12 p-3 mt-1 w-full border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+                    type="text" required>
+            </div>
+            <div class="w-full">
+                <label class="judultabel text-gray-700 font-medium mb-1" for="email">Alamat E-mail</label>
+                <input id="email"
+                    class="isian h-12 p-3 mt-1 w-full border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+                    type="email" required>
+            </div>
+        </div>
+
+        <!-- Textarea Kritik atau Saran -->
+        <div class="mt-6 w-full">
+            <label class="judultabel text-gray-700 font-medium mb-1" for="krisar">Kritik atau Saran</label>
+            <textarea id="krisar"
+                class="isian w-full mt-1 p-3 h-36 border border-gray-300 rounded-lg resize-none outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"
+                required></textarea>
+        </div>
+
+        <!-- Tombol Submit -->
+        <button type="submit"
+            class="mt-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold h-12 w-full md:w-56 px-4 rounded-xl active:scale-95 transition duration-200 shadow-lg hover:shadow-xl">
+            Kirim Saran
+        </button>
+    </form>
+
+    <!-- JUDUL TABEL (BERADA DI LUAR KONTROL SCROLL) -->
+    <h2 class="text-2xl font-bold text-center mb-4 text-gray-800 mx-auto mt-12 w-full max-w-lg lg:max-w-4xl"
+        id="daftar-saran">Daftar
+        Saran Masuk</h2>
+
+    <!-- TABEL DATA KRITIK DAN SARAN WRAPPER (hanya tabel yang di-scroll) -->
+    <div class="mx-auto w-full max-w-md md:max-w-2xl lg:max-w-4xl overflow-x-auto rounded-lg shadow-lg scale-down-center-normal">
+        <table class="w-full border-separate border-spacing-0 bg-white">
+            <thead class="bg-indigo-600 text-white">
+                <tr>
+                    <th class="p-4 text-center">Nama</th> 
+                    <th class="p-4 text-center">E-mail</th>
+                    <th class="p-4 text-center">Kritik dan Saran</th>
+                    <th class="p-4 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="table-body" class="text-gray-700">
+                <!-- Data akan dimuat di sini oleh JavaScript -->
+                <tr>
+                    <td colspan="4" class="text-center p-4 text-gray-500">Memuat data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div id="edit-modal"
+        class="hidden fixed inset-0 bg-gray-900/20 backdrop-blur-md flex items-center justify-center z-40 transition-opacity duration-300"
+        onclick="if(event.target.id === 'edit-modal') closeEditModal()">
+
+        <!-- Konten Modal: Kembali ke latar belakang putih solid (bg-white) -->
+        <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-md m-4">
+            <h3 class="text-2xl font-bold mb-4 text-indigo-700">Edit Saran</h3>
+
+            <form id="editForm" onsubmit="event.preventDefault(); handleUpdateSaran(event);">
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-1" for="edit-nama">Nama</label>
+                    <input type="text" id="edit-nama" required
+                        class="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-1" for="edit-email">Alamat E-mail</label>
+                    <input type="email" id="edit-email" required
+                        class="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-1" for="edit-krisar">Kritik atau Saran</label>
+                    <textarea id="edit-krisar" rows="4" required
+                        class="w-full p-3 border border-gray-300 rounded-lg resize-none outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                </div>
+
+                <div class="flex justify-end space-x-3">
+                    <button type="button" onclick="closeEditModal()"
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-xl transition">
+                        Batal
+                    </button>
+                    <button type="submit" id="update-button"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-xl transition active:scale-95">
+                        Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    
+    <script>
+        // Endpoint MockAPI Anda
+        const API_URL = "https://68d561dfe29051d1c0ae69e0.mockapi.io/latihan/webgis/v1";
+
+        // State untuk melacak ID item yang sedang diedit
+        let currentEditId = null;
+
+        // Fungsi untuk menampilkan pesan
+        function showMessage(message, isError = false) {
+            const msgBox = document.getElementById('message-box');
+            const msgText = document.getElementById('message-text');
+
+            msgText.textContent = message;
+            msgText.className = `px-6 py-3 rounded-lg shadow-xl text-white font-semibold ${isError ? 'bg-red-500' : 'bg-green-500'}`;
+
+            // Tampilkan pesan
+            msgBox.classList.remove('opacity-0', 'pointer-events-none');
+
+            // Sembunyikan pesan setelah 3 detik
+            setTimeout(() => {
+                msgBox.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // --- LOGIKA FORM UTAMA (POST) ---
+        function onSubmit() {
+            const name = document.getElementById("nama").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const kritik = document.getElementById("krisar").value.trim();
+
+            if (name.length > 0 && email.length > 0 && kritik.length > 0) {
+                const submitButton = document.querySelector('button[type="submit"]');
+                submitButton.textContent = 'Mengirim...';
+                submitButton.disabled = true;
+
+                postSaran(name, email, kritik)
+                    .finally(() => {
+                        submitButton.textContent = 'Kirim Saran';
+                        submitButton.disabled = false;
+                    });
+            } else {
+                showMessage("Mohon isi semua field sebelum mengirim.", true);
+            }
+        }
+
+        async function postSaran(name, email, kritik) {
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, kritik }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Gagal menyimpan data: ${response.status}`);
+                }
+
+                await response.json();
+
+                document.getElementById("kritikSaranForm").reset();
+                showMessage("Kritik dan Saran berhasil dikirim!", false);
+                getData();
+
+            } catch (error) {
+                console.error("Terjadi kesalahan saat POST:", error);
+                showMessage("Gagal mengirim data. Coba lagi.", true);
+            }
+        }
+
+        // --- LOGIKA EDIT (MODAL & PUT) ---
+
+        // Membuka modal dan mengisi data
+        function openEditModal(item) {
+            currentEditId = item.id;
+            document.getElementById('edit-nama').value = item.name || '';
+            document.getElementById('edit-email').value = item.email || '';
+            document.getElementById('edit-krisar').value = item.kritik || '';
+            document.getElementById('edit-modal').classList.remove('hidden');
+
+            // Nonaktifkan scrolling pada body
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Menutup modal
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+            currentEditId = null;
+
+            // Aktifkan kembali scrolling pada body
+            document.body.style.overflow = '';
+        }
+
+        // Menangani permintaan PUT
+        async function handleUpdateSaran(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('edit-nama').value.trim();
+            const email = document.getElementById('edit-email').value.trim();
+            const kritik = document.getElementById('edit-krisar').value.trim();
+
+            if (!currentEditId || name.length === 0 || email.length === 0 || kritik.length === 0) {
+                showMessage("Semua field harus diisi.", true);
+                return;
+            }
+
+            const updateButton = document.getElementById('update-button');
+            updateButton.textContent = 'Menyimpan...';
+            updateButton.disabled = true;
+
+            try {
+                const updateUrl = `${API_URL}/${currentEditId}`;
+                const response = await fetch(updateUrl, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, kritik }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Gagal memperbarui data: ${response.status}`);
+                }
+
+                closeEditModal();
+                showMessage(`Saran ID ${currentEditId} berhasil diperbarui.`, false);
+                getData();
+
+            } catch (error) {
+                console.error("Terjadi kesalahan saat PUT:", error);
+                showMessage("Gagal memperbarui data. Coba lagi.", true);
+            } finally {
+                updateButton.textContent = 'Simpan Perubahan';
+                updateButton.disabled = false;
+            }
+        }
+
+        // --- LOGIKA HAPUS (DELETE) ---
+        async function deleteSaran(id) {
+
+            showMessage(`Mencoba menghapus saran ID: ${id}...`, true);
+
+            try {
+                const deleteUrl = `${API_URL}/${id}`;
+                const response = await fetch(deleteUrl, {
+                    method: "DELETE",
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Gagal menghapus data: ${response.status}`);
+                }
+
+                await response.json();
+                showMessage(`Saran ID ${id} berhasil dihapus.`, false);
+
+                getData();
+
+            } catch (error) {
+                console.error("Terjadi kesalahan saat DELETE:", error);
+                showMessage("Gagal menghapus data. Coba lagi.", true);
+            }
+        }
+
+        // --- LOGIKA AMBIL DATA (GET) ---
+        async function getData() {
+            const tableBody = document.getElementById("table-body");
+            // Tampilkan status loading
+            tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4 animate-pulse text-gray-500 bg-gray-50">Memuat data terbaru...</td></tr>';
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "GET",
+                    headers: { "Content-Type": "application/json" },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Gagal mengambil data: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Bersihkan tabel
+                tableBody.innerHTML = "";
+
+                if (data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4 text-gray-500">Belum ada kritik atau saran yang masuk.</td></tr>';
+                    return;
+                }
+
+                // Isi tabel dengan data yang diambil
+                data.forEach((item, index) => {
+                    const row = document.createElement("tr");
+                    row.className = index % 2 === 0 ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100';
+
+                    const nameCell = document.createElement("td");
+                    nameCell.className = "p-4 border-b border-gray-200";
+                    nameCell.textContent = item.name || "-";
+
+                    const emailCell = document.createElement("td");
+                    emailCell.className = "p-4 border-b border-gray-200";
+                    emailCell.textContent = item.email || "-";
+
+                    const kritikCell = document.createElement("td");
+                    kritikCell.className = "p-4 border-b border-gray-200 text-sm italic";
+                    kritikCell.textContent = item.kritik || "-";
+
+                    // SEL UNTUK TOMBOL AKSI
+                    const actionCell = document.createElement("td");
+                    actionCell.className = "p-4 border-b border-gray-200 text-center space-x-2 flex justify-center";
+
+                    // 1. Tombol Edit
+                    const editButton = document.createElement("button");
+                    editButton.textContent = "Edit";
+                    editButton.className = "bg-indigo-500 hover:bg-indigo-600 text-white py-1 px-3 rounded-md text-xs font-semibold transition active:scale-95";
+                    // Panggil openEditModal() dengan seluruh data item
+                    editButton.onclick = () => openEditModal(item);
+
+                    // 2. Tombol Hapus
+                    const deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Hapus";
+                    deleteButton.className = "bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded-md text-xs font-semibold transition active:scale-95";
+                    deleteButton.onclick = () => deleteSaran(item.id);
+
+                    actionCell.appendChild(editButton);
+                    actionCell.appendChild(deleteButton);
+
+
+                    row.appendChild(nameCell);
+                    row.appendChild(emailCell);
+                    row.appendChild(kritikCell);
+                    row.appendChild(actionCell);
+
+                    tableBody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error("Terjadi kesalahan saat GET:", error);
+                tableBody.innerHTML = '<tr><td colspan="4" class="text-center p-4 text-red-500 bg-red-50">Gagal memuat data. Periksa koneksi atau URL API.</td></tr>';
+                showMessage("Gagal memuat daftar saran.", true);
+            }
+        }
+    </script>
+
+
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+
+
+    <footer
+        class="bg-[#D2C1B6] text-[12px] sm:text-[15px] font-semibold text-black text-center mt-20 py-10 tracking-wide">
+        <p>
+            &copy; 2025 Dibuat oleh Akhmad Barizil Hak <br />
+            Dengan penuh cinta dan kesabaran dalam belajar membuat web sendiri.
+        </p>
+    </footer>
+
+
+
+</body>
+
+</html>
